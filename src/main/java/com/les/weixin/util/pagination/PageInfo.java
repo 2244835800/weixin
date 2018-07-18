@@ -22,7 +22,7 @@ public class PageInfo implements Serializable {
     private int totalResult;
     // 当前页数
     private int currentPage;
-    // 当前显示到的ID, 在mysql limit 中就是第一个参数.
+    // 当前显示到的ID, 在mysql limit 中就是第一个参数
     private int currentResult;
     private String sortField;
     private String order;
