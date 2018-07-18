@@ -10,6 +10,8 @@ package com.les.weixin.dao;
 
 import com.les.weixin.entity.User;
 
+import java.util.List;
+
 public interface UserDao {
     int deleteByPrimaryKey(Integer id);
 
@@ -22,4 +24,6 @@ public interface UserDao {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<User> selectAll();
 }

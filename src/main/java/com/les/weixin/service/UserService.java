@@ -9,10 +9,13 @@ package com.les.weixin.service;
  */
 import com.les.weixin.entity.User;
 
+import java.util.List;
+
 
 public interface UserService {
     public User getUserById(int userId);
 
     boolean addUser(User record);
 
+    List<User> selectAll();
 }

@@ -1,7 +1,11 @@
 package com.les.weixin.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.les.weixin.dao.UserDao;
 import com.les.weixin.entity.User;
 import com.les.weixin.service.UserService;
+import net.sf.json.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @Author:hepo
@@ -30,6 +35,17 @@ public class UserController {
         int userId = Integer.parseInt(request.getParameter("id"));
         User user = this.userService.getUserById(userId);
         return user;
+    }
+    @RequestMapping("/hello4")
+    public List findUserPageFromMybatis(HttpServletRequest request, Integer pageNum, Integer pageSize) {
+        pageNum = pageNum == null ? 1 : pageNum;
+        pageSize = pageSize == null ? 10 : pageSize;
+        PageHelper.startPage(pageNum, pageSize);
+        List<User> list = this.userService.selectAll();
+//        PageInfo pageInfo = new PageInfo(list);
+        Page page = (Page) list;
+        return page;
+//        return "PageInfo: " + JSON.toJSONString(pageInfo) + ", Page: " + JSON.toJSONString(page);
     }
 
 }

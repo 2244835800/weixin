@@ -16,16 +16,66 @@
 <body>
 
 
-<input/>
-fsda
-<div class="container">
-    //这里写你bootstrap样式的代码
-</div>
+<form class="form-horizontal form-inline">
+    <fieldset>
+        <div id="legend" class="">
+            <legend class="">表单名</legend>
+        </div>
 
 
+        <div class="control-group">
+
+            <!-- Text input-->
+
+            <div class="controls">
+                <label class="form-label">事件标题</label>
+                <input type="text" placeholder="" class="form-control">
+                <p class="help-block"></p>
+            </div>
+        </div>
 
 
+        <div class="control-group">
 
+            <!-- Textarea -->
+            <label class="control-label">事件内容</label>
+            <div class="controls">
+                <div class="textarea">
+                    <textarea type="" class="form-control"> </textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="control-group">
+
+            <!-- Text input-->
+            <label class="control-label">上报人姓名</label>
+            <div class="controls">
+                <input type="text" placeholder="" class="form-control">
+                <p class="help-block"></p>
+            </div>
+        </div>
+
+        <div class="control-group">
+
+            <!-- Text input-->
+            <label class="control-label">手机号码</label>
+            <div class="controls">
+                <input type="text" placeholder="" class="form-control">
+                <p class="help-block"></p>
+            </div>
+        </div>
+
+
+        <div class="control-group">
+            <!-- Button -->
+            <div class="controls">
+                <button class="btn btn-success">确定</button> <button class="btn btn-danger">取消</button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
 
 
 <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
