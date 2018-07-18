@@ -1,3 +1,4 @@
+/*
 package com.les.weixin.config;
 
 
@@ -11,13 +12,15 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 import java.sql.SQLException;
 
+*/
 /**
  * @Author:hepo
  * @Version:v1.0
  * @Description:
  * @Date:2018/7/17/017
  * @Time:15:37
- */
+ *//*
+
 @Configuration
 public class DruidDBConfig {
     private Logger logger = Logger.getLogger(this.getClass());	//log4j日志
@@ -87,6 +90,7 @@ public class DruidDBConfig {
         datasource.setDriverClassName(driverClassName);
 
         //configuration
+*/
 /*        datasource.setInitialSize(initialSize);
         datasource.setMinIdle(minIdle);
         datasource.setMaxActive(maxActive);
@@ -104,9 +108,11 @@ public class DruidDBConfig {
         } catch (SQLException e) {
             logger.error("druid configuration initialization filter", e);
         }
-        datasource.setConnectionProperties(connectionProperties);*/
+        datasource.setConnectionProperties(connectionProperties);*//*
+
 
         return datasource;
     }
 }
 
+*/

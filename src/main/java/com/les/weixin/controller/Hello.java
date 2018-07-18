@@ -2,7 +2,6 @@ package com.les.weixin.controller;
 
 import com.les.weixin.entity.UserEntity;
 import com.les.weixin.enums.UserSexEnum;
-import com.les.weixin.mapper.UserMapper;
 import com.les.weixin.util.MessageUtil;
 import com.les.weixin.util.TextMessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
