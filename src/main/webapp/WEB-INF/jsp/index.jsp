@@ -7,10 +7,28 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+
 <head>
-    <title>this is my Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>案件上报</title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 </head>
 <body>
-im so cooldssdddddd1
+
+
+<input/>
+fsda
+<div class="container">
+    //这里写你bootstrap样式的代码
+</div>
+
+
+
+
+
+
+
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </body>
 </html>
