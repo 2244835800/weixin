@@ -1,11 +1,10 @@
 package com.les.weixin.controller;
 
-import com.les.weixin.entity.UserEntity;
-import com.les.weixin.enums.UserSexEnum;
 import com.les.weixin.util.MessageUtil;
 import com.les.weixin.util.TextMessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +16,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 //import com.les.weixin.mapper.UserMapper;
+
 /**
  * @Author:hepo
  * @Version:v1.0
@@ -31,12 +31,9 @@ public class Hello {
 //    @Autowired
 //    private UserMapper userMapper;
 
-    @GetMapping(value="/hello1")
-    public String something() {
-        return "hello yes";
-    }
 
     private String TOKEN = "good";
+
 
 
 
@@ -52,7 +49,7 @@ public class Hello {
         String myString = sha1(sortString);
         //校验
         if (myString != null && myString != "" && myString.equals(signature)) {
-            System.out.println("签名校验通过");
+            System.out.println("签名校验通s过");
             //如果检验成功原样返回echostr，微信服务器接收到此输出，才会确认检验完成。
             return echostr;
         } else {
@@ -96,25 +93,12 @@ public class Hello {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     @PostMapping(value = "hello")
-    public void dopost(HttpServletRequest request, HttpServletResponse response){
+    public void dopost(HttpServletRequest request, HttpServletResponse response) {
         response.setCharacterEncoding("utf-8");
         PrintWriter out = null;
         //将微信请求xml转为map格式，获取所需的参数
-        Map<String,String> map = MessageUtil.xmlToMap(request);
+        Map<String, String> map = MessageUtil.xmlToMap(request);
         String ToUserName = map.get("ToUserName");
         String FromUserName = map.get("FromUserName");
         String MsgType = map.get("MsgType");
@@ -122,8 +106,8 @@ public class Hello {
 
         String message = null;
         //处理文本类型，实现输入1，回复相应的封装的内容
-        if("text".equals(MsgType)){
-            if("1".equals(Content)){
+        if ("text".equals(MsgType)) {
+            if ("1".equals(Content)) {
                 TextMessageUtil textMessage = new TextMessageUtil();
                 message = textMessage.initMessage(FromUserName, ToUserName);
             }
@@ -141,17 +125,17 @@ public class Hello {
 
 
 
-//    @PostMapping(value = "insert")
-//    public void testInsert() throws Exception {
-//        userMapper.insert(new UserEntity("aa", "a123456", UserSexEnum.MAN));
-//        userMapper.insert(new UserEntity("bb", "b123456", UserSexEnum.WOMAN));
-//        userMapper.insert(new UserEntity("cc", "b123456", UserSexEnum.WOMAN));
-//
-//    }
 
+    @GetMapping(value = "/hello1")
+    public String something() {
+        return "hello yes";
+    }
 
-
-
+    @GetMapping(value = "/hello2")
+    public ModelAndView hello2() {
+        ModelAndView mv = new ModelAndView("index");
+        return mv;
+    }
 
 
 
