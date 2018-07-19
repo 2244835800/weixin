@@ -1,21 +1,19 @@
 package com.les.weixin.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.les.weixin.dao.UserDao;
+import com.github.pagehelper.PageInfo;
 import com.les.weixin.entity.User;
 import com.les.weixin.service.UserService;
-import net.sf.json.JSON;
+import com.les.weixin.util.pagination.PageBootGrid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-
 /**
  * @Author:hepo
  * @Version:v1.0
@@ -31,20 +29,22 @@ public class UserController {
 
     @RequestMapping("/showUser")
     @ResponseBody
-    public User toIndex(HttpServletRequest request, Model model){
+    public User toIndex(HttpServletRequest request, Model model) {
         int userId = Integer.parseInt(request.getParameter("id"));
         User user = this.userService.getUserById(userId);
         return user;
     }
+
     @RequestMapping("/hello4")
-    public List findUserPageFromMybatis(HttpServletRequest request, Integer pageNum, Integer pageSize) {
-        pageNum = pageNum == null ? 1 : pageNum;
-        pageSize = pageSize == null ? 10 : pageSize;
-        PageHelper.startPage(pageNum, pageSize);
+    @ResponseBody
+    public String findUserPageFromMybatis(HttpServletRequest request, Integer current, Integer rowCount) {
+        current = current == null ? 1 : current;
+        rowCount = rowCount == null ? 10 : rowCount;
+        PageHelper.startPage(current, rowCount);
         List<User> list = this.userService.selectAll();
-//        PageInfo pageInfo = new PageInfo(list);
+        PageInfo pageInfo = new PageInfo(list);
         Page page = (Page) list;
-        return page;
+        return new PageBootGrid().queryForDataSet(pageInfo);
 //        return "PageInfo: " + JSON.toJSONString(pageInfo) + ", Page: " + JSON.toJSONString(page);
     }
 

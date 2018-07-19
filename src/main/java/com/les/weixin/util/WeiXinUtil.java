@@ -8,11 +8,8 @@ package com.les.weixin.util;
  * @Time:11:20
  */
 
-import java.io.IOException;
-
 import com.les.weixin.entity.AccessToken;
 import net.sf.json.JSONObject;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -21,7 +18,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
+
+import java.io.IOException;
 
 //import redis.clients.jedis.Jedis;
 //

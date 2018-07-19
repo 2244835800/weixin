@@ -1,0 +1,91 @@
+ 
+/* index页面 */
+.input_tip{font-size:18px;border:0px;height:30px;width:150px;margin-left:10px;float: left;outline: none;}
+.font_tip{font-size:18px;padding-left: 10px;line-height: 40px;float: left;}
+.div_tip{width:375px;height:40px;margin-left:-13px;background-color: white;}
+
+
+/* 后台管理页面 */
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+hr{margin-left: 15px; margin-right: 15px; height:1px;border:none;border-top:1px solid #555555;}
+
+.body_comm{
+    background-color: #E6E9EC;
+    min-height: 800px;
+    height: auto;
+}
+
+.memu{width: 250px; height: 100%; float: left;background-color: #2d2f31;overflow-x:hidden}
+.logo{width: 250px; height: 74px; float: left; background-color: #f5a22b;}
+.img_logo{margin-top: 15px; width: 200px; margin-left: 25px;}
+.menu_tree{width: 100%; float: left; margin-top: 18px;}
+.rb{border-right: 5px solid #f5852b; width: 245px; background-color: #505255;}
+.menu_a{cursor: pointer; width: 100%;text-decoration:none;}
+.menu_info{height: 60px; line-height: 60px; vertical-align: middle; width: 245px; font-size: 20px; color: white; cursor: pointer; margin-left: 0px;}
+.menu_img{margin-left: 35px; border: 0px;}
+.span_title{margin-left: 15px;}
+
+.head_div{width: 100%; height: 74px; float: left; border: 0px;white-space:nowrap; overflow:hidden;}
+.search_div{float: left; margin-left: 20px; margin-top: 22px; height: 30px; width: 500px; border-radius: 15px; border: 1px solid gray; line-height: 30px; vertical-align: middle;}
+.search_input{height: 26px; line-height: 26px; vertical-align: middle; width: 450px; border: 0px; margin-left: 15px; margin-top: 1px; float: left; font-size: 20px;}
+.search_img{width: 20px; height: 20px; margin-left: 0px; border: 0px; margin-top: 5px; float: left; cursor: pointer;}
+.login_div{float: left; margin-left: 300px; margin-top: 22px; height: 30px; width: 200px; border: 0px; line-height: 30px; vertical-align: middle; }
+.login_img{float: left; margin-left: 30px; width: 30px; height: 30px; cursor: pointer;}
+.head_common{background-color: white; height: 74px;}
+.div_body{width: 1200px; background-color: white; min-height: 700px; margin-left: 20px; margin-top: 20px;}
+.wk_title{width: 100%; height: 100px; line-height: 100px; vertical-align: middle; text-align: center; color: black; font-size: 24px; font-weight: bold;}
+.wk_msg{width: 100%; height: auto;}
+.wk_msg_s{width: 96%; margin: 2%; word-break: break-all; word-wrap:break-word; color: gray; height: auto;}
+.pagination_div{width: auto; background-color:#E6E9EC; position: absolute; text-align: right;}
+.pagination_btn{height: 30px; float: right; text-align: center; border: 1px solid gray; cursor: pointer;}
+.wh80{width: 80px;}
+.wh30{width: 30px;}
+.mr0{margin-right: 0px;}
+.mr10{margin-right: 10px;}
+
+.div_opr{width: 1200px; height: 60px;line-height: 60px; vertical-align: middle; margin-left: 20px; margin-top: 20px; background-color: white; border: 1px solid #bababa; }
+.opr_div{width: 120px; height: 35px; line-height: 35px; vertical-align: middle; color: white; font-size: 24px;float: left; margin-top: 12px; text-align: center; cursor: pointer; border-radius: 5px;}
+.col_ora{background-color: #f5a22b; margin-left: 920px;}
+.col_gra{background-color: #bababa;margin-left: 20px;}
+.add_account{background-color: #f5a22b;margin-left: 20px;}
+.undeal{background-color: #f5a22b;margin-left: 180px;}
+.dealing{background-color: #f5be2b;margin-left: 20px;}
+.dealed{background-color: #bababa;margin-left: 20px;}
+
+.div_notice{width: 1200px; min-height: 600px; margin-left: 20px; margin-top: 20px; background-color: white; border: 1px solid #bababa;}
+.tb_notice{margin-top: 5px; margin-left: 5px; margin-right: 5px; width: 1190px;}
+.thead_notice{font-size: 18px; font-weight: bold; vertical-align: middle;}
+.tac{text-align: center;}
+.tal{text-align: left;}
+.tb_notice td{border-bottom:thin solid #bababa; height: 50px;}
+.pdl5{padding-left: 5px;}
+.pdl15{padding-left: 15px;}
+td.selected{background-color:#f1f4f7;}
+.td_div_opr{height: 30px; width: 60px; float: left; text-align: center; line-height: 30px; vertical-align: middle; color: white; font-size: 20px; margin-left: 30px; border-radius: 5px; cursor: pointer;}
+.td_div_opr_org{background-color: #f5a22b}
+.td_div_opr_blu{background-color: #4c91ef}
+.td_div_opr_gra{background-color: #bababa}
+
+.unvoted{color: #f5a22b}
+.voting{color: #4c91ef}
+.voted{color: #bababa}
+.btn_save{width: 100px; height: 35px; border: 0px; color: white; font-size: 18px; border-radius: 5px; cursor: pointer;}
+.btn_choo{width: 60px; height: 34px; line-height: 34px; vertical-align: middle; float: left; margin-left: 20px; background-color: #f5a22b; color: white; text-align: center; border-radius: 5px; cursor: pointer; }
+.btn_bgc_save{background-color: #4c91ef;}
+.btn_bgc_commit{background-color: #f5a22b}
+.btn_bgc_cancel{background-color: #bababa;}
+.btn_ml{margin-left: 66px;}
+.title_left{width: 100px; padding-left: 60px; font-size: 18px; float: left;}
+.title_col_left{color: #bababa;}
+.title_left_comm{color: black; font-weight: bold;}
+.title_comm{width: 760px; height: 40px; line-height: 40px; vertical-align: middle; float: left; margin-top: 10px; margin-left: 20px;}
+.title_bottom{border-bottom: thin solid #bababa;}
+
+
+/**公告预览页面*/
+.showdeldiv{width: 100px; height: 33px;border:solid 1px #e6e9ec;padding-left:10px;font-size:14px;line-height:35px;border-radius: 5px;color:#7d7d7d;display: none;}

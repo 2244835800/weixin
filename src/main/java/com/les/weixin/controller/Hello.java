@@ -1,11 +1,7 @@
 package com.les.weixin.controller;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
 import com.les.weixin.util.MessageUtil;
 import com.les.weixin.util.TextMessageUtil;
-import net.sf.json.JSON;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -36,8 +32,6 @@ public class Hello {
 
 
     private String TOKEN = "good";
-
-
 
 
     @GetMapping("/hello")
@@ -126,9 +120,6 @@ public class Hello {
     }
 
 
-
-
-
     @RequestMapping(value = "/hello1")
     public String something() {
         return "hello yes";
@@ -139,6 +130,7 @@ public class Hello {
         ModelAndView mv = new ModelAndView("index");
         return mv;
     }
+
     @GetMapping(value = "/hello3")
     public ModelAndView hello3() {
         ModelAndView mv = new ModelAndView("index2");

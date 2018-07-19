@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html>
 
 <head>
@@ -17,19 +21,24 @@
 <body>
 
 
-<table id="grid" data-toggle="bootgrid" data-ajax="true" data-url="/test/hello1" class="table table-condensed table-hover table-striped">
+<table id="grid" data-toggle="bootgrid" data-ajax="true" data-url="/user/hello4"  class="table table-condensed table-hover table-striped">
     <thead>
     <tr>
-        <th data-column-id="id">ID</th>
-        <th data-column-id="name">Sender</th>
+        <th data-column-id="id" data-identifier="true" data-width="80">序号</th>
+        <th data-column-id="userName" data-formatter="link">事件名称</th>
     </tr>
     </thead>
 </table>
 
 
 <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js"></script>
+<%--<script src="https://cdn.bootcss.com/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js"></script>--%>
+<script src="/js/jquery.bootgrid.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-
+<script>
+    function showDetail(e){
+        console.log(e);
+    }
+</script>
 </body>
 </html>
