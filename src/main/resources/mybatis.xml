@@ -5,7 +5,7 @@
 	<typeAliases>
 		<typeAlias alias="computer" type="com.ai.model.Computer"/>
 	</typeAliases>
--->	
+-->
  <settings>
 
     <setting name="jdbcTypeForNull" value="NULL" />
@@ -13,12 +13,13 @@
   </settings>
   
 	<mappers>
-		<mapper resource="com/ai/mapping/AdminTipMsg.xml"/>	
-		<mapper resource="com/ai/mapping/AdminAccount.xml"/>	
-		<mapper resource="com/ai/mapping/AdminTipPicture.xml"/>
+		<mapper resource="com/les/weixin/dao/AdminTipMsg.xml"/>
+
+		<mapper resource="com/les/weixin/dao/AdminTipPicture.xml"/>
+<!--        <mapper resource="com/ai/mapping/AdminAccount.xml"/>
 		<mapper resource="com/ai/mapping/MsgNotice.xml"/>
 		<mapper resource="com/ai/mapping/MsgNews.xml"/>
 		<mapper resource="com/ai/mapping/MsgMessage.xml"/>
-		<mapper resource="com/ai/mapping/LStaff.xml"/>
+		<mapper resource="com/ai/mapping/LStaff.xml"/>-->
 	</mappers>
 </configuration>	

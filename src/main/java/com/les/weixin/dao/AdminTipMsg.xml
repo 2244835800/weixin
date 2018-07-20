@@ -1,94 +1,14 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.les.weixin.dao.AdminTipMsgDao">
-    <resultMap type="com.les.weixin.entity.AdminTipMsg" id="AdminTipMsg">
-        <result property="strTipId" column="str_tip_id" jdbcType="VARCHAR"/>
-        <result property="strPersonName" column="str_person_name" jdbcType="VARCHAR"/>
-        <result property="strPersonTelphone" column="str_person_telphone" jdbcType="VARCHAR"/>
-        <result property="strTipTitle" column="str_tip_title" jdbcType="VARCHAR"/>
-        <result property="strTipDescription" column="str_tip_description" jdbcType="VARCHAR"/>
-        <result property="strPic1" column="str_tip_pic1" jdbcType="VARCHAR"/>
-        <result property="strPic2" column="str_tip_pic2" jdbcType="VARCHAR"/>
-        <result property="strTipState" column="str_tip_state" jdbcType="VARCHAR"/>
-        <result property="strTipSource" column="str_tip_source" jdbcType="VARCHAR"/>
-        <result property="strTipType" column="str_tip_type" jdbcType="VARCHAR"/>
-        <result property="comments" column="comments" jdbcType="VARCHAR"/>
-        <result property="openid" column="comm" jdbcType="VARCHAR"/>
-        <result property="createtime" column="createtime" jdbcType="VARCHAR"/>
-        <result property="districtId" column="districtid" jdbcType="VARCHAR"/>
-        <result property="x" column="x" jdbcType="VARCHAR"/>
-        <result property="y" column="y" jdbcType="VARCHAR"/>
+	<!-- parameterType:参数类型,填写实体类的完整名字 -->
+    <select id="s" resultType="com.les.weixin.entity.User" parameterType="java.util.List" >
+        select
+        *
+        from user_t
+    </select>
 
-    </resultMap>
-    <insert id="addTipMsg" parameterType="com.les.weixin.entity.AdminTipMsg">
-        <selectKey keyProperty="strTipId" resultType="java.lang.String" order="BEFORE">
-            SELECT seq_admin_tip_msg.NEXTVAL AS strTipId FROM DUAL
-        </selectKey>
-        insert into admin_tip_msg
-        (str_tip_id,
-        str_person_name,
-        str_person_telphone,
-        str_tip_title,
-        str_tip_description,
-        str_tip_pic1,
-        str_tip_pic2,
-        str_tip_state,
-        str_tip_source,
-        str_tip_type,
-        comments,
-        comm,
-        createtime,
-        districtid,
-        x,
-        y)
-        values(
-        ${strTipId},
-        #{strPersonName},
-        #{strPersonTelphone},
-        #{strTipTitle},
-        #{strTipDescription},
-        #{strPic1},
-        #{strPic2},
-        #{strTipState},
-        #{strTipSource},
-        #{strTipType},
-        #{comments},
-        #{openid},
-        to_date(#{createtime},'YYYY-MM-DD HH24:MI:SS'),
-        #{districtId},
-        #{x},
-        #{y})
-    </insert>
-    <select id="selectCount" resultType="java.lang.Integer">
-	    select count(1) from admin_tip_msg
-	</select>
-    <select id="selectCountByAccountId" resultType="java.lang.Integer">
-	    select count(1) from admin_tip_msg where admin_account_id=#{value}
-	</select>
-    <select id="selectList" resultMap="AdminTipMsg">
-	    select * from 
-	    (select a1.*,rownum rn from 
-	    (select * from admin_tip_msg ORDER BY commit_time desc) a1 
-	    where rownum &lt;= #{pageSize} ) 
-	    where rn&gt;=#{startPos}
-	</select>
-    <select id="selectListByAccountId" resultMap="AdminTipMsg">
-	    select * from 
-	    (select a1.*,rownum rn from 
-	    (select * from admin_tip_msg where admin_account_id=#{accountId}  ORDER BY commit_time desc) a1 
-	    where rownum &lt;= #{pageSize} ) 
-	    where rn&gt;=#{startPos}
-	</select>
-    <select id="selectById" parameterType="java.lang.String" resultMap="AdminTipMsg">
-	    select * from admin_tip_msg where str_tip_id=#{value}
-	</select>
-    <select id="selectByOpenId" parameterType="java.lang.String" resultMap="AdminTipMsg">
-		select * from admin_tip_msg order by createtime desc
-	</select>
-    <select id="selectListByWeixinId" parameterType="java.lang.String" resultMap="AdminTipMsg">
-	    select * from admin_tip_msg 
-	    where comm=#{value}
-	    ORDER BY createtime desc
-	</select>
+	<!--<select id="selectAll"  resultMap="java.util.Objects" parameterType="com.les.weixin.entity.User">-->
+	<!--select * from admin_tip_msg-->
+	<!--</select>-->
 </mapper>

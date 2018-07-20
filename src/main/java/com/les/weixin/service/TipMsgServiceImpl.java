@@ -1,7 +1,8 @@
 package com.les.weixin.service;
 
+import com.les.weixin.dao.AdminTip;
+import com.les.weixin.dao.AdminTipImg;
 import com.les.weixin.dao.AdminTipMsgDao;
-import com.les.weixin.dao.AdminTipPictureDao;
 import com.les.weixin.entity.AdminTipMsg;
 import com.les.weixin.entity.AdminTipPicture;
 import com.les.weixin.entity.Page;
@@ -16,10 +17,11 @@ import java.util.Map;
 @Service
 public class TipMsgServiceImpl implements TipMsgService{
 
+
 	@Autowired
-	private AdminTipMsgDao admintipmsgDao;
+	private AdminTip admintipmsgDao;
 	@Autowired
-	private AdminTipPictureDao admintippictureDao;
+	private AdminTipImg admintippictureDao;
 	@Override
 	public Map<String, Object> selectList(int pageNow) {
 		Map<String, Object> map=new HashMap<String, Object>();
@@ -30,10 +32,10 @@ public class TipMsgServiceImpl implements TipMsgService{
   		 }
   		 List<AdminTipMsg> list=new ArrayList<AdminTipMsg>();
    		 if(pageNow!=0){
-   			 page = new Page(totalCount, pageNow); 
+   			 page = new Page(totalCount, pageNow);
    			 list=admintipmsgDao.selectList(page.getStartPos(), page.getPageSize());
    		 }else{
-   			 page = new Page(totalCount, 1); 
+   			 page = new Page(totalCount, 1);
    			 list=admintipmsgDao.selectList(page.getStartPos(), page.getPageSize());
    		 }
    		map.put("list", list);
@@ -55,8 +57,14 @@ public class TipMsgServiceImpl implements TipMsgService{
 				admintippictureDao.addPicture(picture);
 			}
 		}
-		
+
 	}
+
+	@Override
+	public void addTipMsg(AdminTipMsg tipMsg) {
+		admintipmsgDao.addTipMsg(tipMsg);
+	}
+
 	/**
 	 * app举报列表
 	 */
@@ -71,16 +79,16 @@ public class TipMsgServiceImpl implements TipMsgService{
   		 }
   		 List<AdminTipMsg> list=new ArrayList<AdminTipMsg>();
    		 if(pageNow!=0){
-   			 page = new Page(totalCount, pageNow); 
+   			 page = new Page(totalCount, pageNow);
    			 list=admintipmsgDao.selectListByAccountId(page.getStartPos(), page.getPageSize(),accountId);
    		 }else{
-   			 page = new Page(totalCount, 1); 
+   			 page = new Page(totalCount, 1);
    			 list=admintipmsgDao.selectListByAccountId(page.getStartPos(), page.getPageSize(),accountId);
    		 }
    		map.put("list", list);
 		map.put("page", page);
 		return map;
-		
+
 	}
 	//举报详情
 	@Override

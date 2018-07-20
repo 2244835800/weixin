@@ -4,9 +4,9 @@ package com.les.weixin.controller;
 import com.jhlabs.map.proj.Projection;
 import com.jhlabs.map.proj.ProjectionFactory;
 import com.les.weixin.dao.AdminTipMsgDao;
-import com.les.weixin.dao.AdminTipPictureDao;
+import com.les.weixin.dao.AdminTipImg;
+import com.les.weixin.dao.AdminTip;
 import com.les.weixin.entity.AdminTipMsg;
-import com.les.weixin.entity.AdminTipPicture;
 import com.les.weixin.entity.Page;
 import com.les.weixin.service.TipMsgService;
 import com.les.weixin.util.AppProperties;
@@ -32,13 +32,14 @@ import java.util.*;
 @Controller
 @RequestMapping("/TipMsg")
 public class TipMsgController {
-
+    @Autowired
+    private AdminTip adminTip;
     @Autowired
     private AdminTipMsgDao admintipmsgDao;
     @Autowired
     private TipMsgService tipmsgService;
     @Autowired
-    private AdminTipPictureDao admintippictureDao;
+    private AdminTipImg admintippictureDao;
 
     private static Logger log = LoggerFactory.getLogger(TipMsgController.class);
 
@@ -200,7 +201,7 @@ public class TipMsgController {
                 tipMsg.getX() + "-" +
                 tipMsg.getY());
 
-        admintipmsgDao.addTipMsg(tipMsg);
+        adminTip.addTipMsg(tipMsg);
         return "success";
     }
 
@@ -223,14 +224,15 @@ public class TipMsgController {
         tipMsg.setStrTipState("0");
         tipMsg.setStrTipType("1");
         tipMsg.setCommitTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        admintipmsgDao.addTipMsg(tipMsg);
+        tipmsgService.addTipMsg(tipMsg);
+
         if (strTipPic1 != null && !strTipPic1.equals("")) {
-            AdminTipPicture picture1 = new AdminTipPicture();
+            com.les.weixin.entity.AdminTipPicture picture1 = new com.les.weixin.entity.AdminTipPicture();
             picture1.setStrTipId(tipMsg.getStrTipId());
             picture1.setStrTipPicUrl(strTipPic1);
             admintippictureDao.addPicture(picture1);
             if (strTipPic2 != null && !strTipPic2.equals("")) {
-                AdminTipPicture picture2 = new AdminTipPicture();
+                com.les.weixin.entity.AdminTipPicture picture2 = new com.les.weixin.entity.AdminTipPicture();
                 picture2.setStrTipId(tipMsg.getStrTipId());
                 picture2.setStrTipPicUrl(strTipPic2);
                 admintippictureDao.addPicture(picture2);
@@ -248,7 +250,7 @@ public class TipMsgController {
     public String tipList(Model model, int pageNow) {
 
         Page page = null;
-        int totalCount = admintipmsgDao.selectCount();
+        int totalCount = adminTip.selectCount();
         if (totalCount == 0) {
             totalCount = 1;
         }
@@ -256,28 +258,27 @@ public class TipMsgController {
         if (pageNow != 0) {
             page = new Page(totalCount, pageNow);
             page.setPageSize(20);
-            list = admintipmsgDao.selectList(page.getStartPos(), page.getPageSize());
+            list = adminTip.selectList(page.getStartPos(), page.getPageSize());
         } else {
             page = new Page(totalCount, 1);
             page.setPageSize(20);
-            list = admintipmsgDao.selectList(page.getStartPos(), page.getPageSize());
+            list = adminTip.selectList(page.getStartPos(), page.getPageSize());
         }
 
 
         model.addAttribute("list", list);
         model.addAttribute("page", page);
         model.addAttribute("id", "5");
-        return "/WEB-INF/view/Tip/tipList";
+        return "Tip/tipList";
     }
-
     /**
      * web举报详情
      */
     @RequestMapping("/detail")
     public String detail(Model model, String tipId) {
-        AdminTipMsg adminTipMsg = admintipmsgDao.selectById(tipId);
+        AdminTipMsg adminTipMsg = adminTip.selectById(tipId);
         model.addAttribute("adminTipMsg", adminTipMsg);
-        List<AdminTipPicture> list = admintippictureDao.selectListByTipId(tipId);
+        List<com.les.weixin.entity.AdminTipPicture> list = admintippictureDao.selectListByTipId(tipId);
         if (list.size() == 0) {
             model.addAttribute("strTipPic1", "");
             model.addAttribute("strTipPic2", "");
@@ -290,7 +291,7 @@ public class TipMsgController {
         }
 
         model.addAttribute("id", "5");
-        return "/WEB-INF/view/Tip/tipDetail";
+        return "Tip/tipDetail";
     }
 
     /**
@@ -298,12 +299,12 @@ public class TipMsgController {
      */
     @RequestMapping("/chatDetail")
     public String chatDetail(Model model, String tipId) {
-        AdminTipMsg adminTipMsg = admintipmsgDao.selectById(tipId);
+        AdminTipMsg adminTipMsg = adminTip.selectById(tipId);
         adminTipMsg.setStrPic1(AppProperties.getValue("CG.SYSTEM.MEDIA.URL") + adminTipMsg.getStrPic1());
         adminTipMsg.setStrPic2(adminTipMsg.getStrPic2() != null ? AppProperties.getValue("CG.SYSTEM.MEDIA.URL") + adminTipMsg.getStrPic2() : "");
         model.addAttribute("adminTipMsg", adminTipMsg);
 //        model.addAllAttributes("")
-//        List<AdminTipPicture> list = admintippictureDao.selectListByTipId(tipId);
+//        List<AdminTipImg> list = admintippictureDao.selectListByTipId(tipId);
 //        if (list.size() == 0) {
 //            model.addAttribute("strTipPic1", "");
 //            model.addAttribute("strTipPic2", "");
@@ -316,8 +317,13 @@ public class TipMsgController {
 //        }
 
 
-        return "/WEB-INF/view/Tip/chatTipDetail";
+        return "Tip/chatTipDetail";
     }
 
 
+
+    @RequestMapping("/selectAll")
+    public void selectAll2(HttpServletRequest request, Model model) {
+        adminTip.selectAll();
+    }
 }

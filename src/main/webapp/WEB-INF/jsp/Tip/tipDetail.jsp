@@ -174,8 +174,8 @@ $('.nav > ul > li').click(function(){ $(this).addClass("now").siblings().removeC
     <br>
     <span style="font-size: 18px;">处理状态：</span><span style="font-size: 18px;"><c:if test="${adminTipMsg.strTipState==0}">未处理</c:if><c:if test="${adminTipMsg.strTipState==1}">已受理</c:if><c:if test="${adminTipMsg.strTipState==2}">处理中</c:if><c:if test="${adminTipMsg.strTipState==3}">处理完成</c:if></span>
       <br> <br>
-   <c:if test="${adminTipMsg.strTipState!=0}"> <span style="font-size: 18px;">处理时间：</span><span style="font-size: 18px;">${adminTipMsg.dealTime}</span><br> <br>
-   <span style="font-size: 18px;">处理内容：</span><span style="font-size: 18px;">${adminTipMsg.comm}</span><br> <br>
+   <c:if test="${adminTipMsg.strTipState!=0}"> <span style="font-size: 18px;">处理时间：</span><span style="font-size: 18px;"></span><br> <br>
+   <span style="font-size: 18px;">处理内容：</span><span style="font-size: 18px;">${adminTipMsg.comments}</span><br> <br>
    </c:if>
     </div></div></td>
   </tr>

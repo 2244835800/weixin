@@ -1,6 +1,5 @@
 package com.les.weixin.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -12,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
 /**
  * @Author:hepo
  * @Version:v1.0
@@ -26,6 +27,7 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
 
     @RequestMapping("/showUser")
     @ResponseBody
@@ -47,5 +49,6 @@ public class UserController {
         return new PageBootGrid().queryForDataSet(pageInfo);
 //        return "PageInfo: " + JSON.toJSONString(pageInfo) + ", Page: " + JSON.toJSONString(page);
     }
+
 
 }

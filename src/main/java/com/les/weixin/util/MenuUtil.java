@@ -107,22 +107,22 @@ public class MenuUtil {
         ViewButton button31 = new ViewButton();
         button31.setName("案件跟踪");
         button31.setType("view");
-        button31.setUrl("http://9d1debac.ngrok.io/test/hello3");
+        button31.setUrl("http://6f6d0da6.ngrok.io/TipMsg/tipList?pageNow=1");
 
         ViewButton button32 = new ViewButton();
         button32.setName("案件上报");
         button32.setType("view");
-        button32.setUrl("http://9d1debac.ngrok.io/test/hello2");
+        button32.setUrl("http://6f6d0da6.ngrok.io/TipMsg/TipMsg");
 
         ViewButton button33 = new ViewButton();
         button33.setName("新闻发布");
         button33.setType("view");
-        button33.setUrl("http://9d1debac.ngrok.io/test/hello2");
+        button33.setUrl("http://6f6d0da6.ngrok.io/test/hello2");
 
         ViewButton button34 = new ViewButton();
         button34.setName("办事指南");
         button34.setType("view");
-        button34.setUrl("http://9d1debac.ngrok.io/test/hello2");
+        button34.setUrl("http://6f6d0da6.ngrok.io/test/hello3");
         //封装到一级菜单
         Button button3 = new Button();
         button3.setName("全民城管");

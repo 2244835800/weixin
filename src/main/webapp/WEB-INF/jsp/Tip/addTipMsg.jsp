@@ -229,7 +229,7 @@ var tCanvas = document.createElement("canvas");
 var tctx = tCanvas.getContext("2d");
 
 var maxsize = 100 * 1024;
-
+// var uploadurl="main/resources/static";
 $("#upload").on("click", function() {
       filechooser.click();
     })
