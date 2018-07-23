@@ -7,7 +7,7 @@ package com.les.weixin.entity;
  * @Date:2018/7/18/018
  * @Time:11:15
  */
-public class ViewButton extends Button{
+public class ButtonView extends Button{
 
     private String url;//网页链接
 

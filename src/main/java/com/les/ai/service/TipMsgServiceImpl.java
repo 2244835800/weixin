@@ -1,10 +1,9 @@
-package com.les.weixin.service;
+package com.les.ai.service;
 
-import com.les.weixin.dao.AdminTip;
-import com.les.weixin.dao.AdminTipImg;
-import com.les.weixin.dao.AdminTipMsgDao;
-import com.les.weixin.entity.AdminTipMsg;
-import com.les.weixin.entity.AdminTipPicture;
+import com.les.ai.dao.AdminTip;
+import com.les.ai.dao.AdminTipImg;
+import com.les.ai.entity.AdminTipMsg;
+import com.les.ai.entity.AdminTipPicture;
 import com.les.weixin.entity.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class TipMsgServiceImpl implements TipMsgService{
+public class TipMsgServiceImpl implements TipMsgService {
 
 
 	@Autowired

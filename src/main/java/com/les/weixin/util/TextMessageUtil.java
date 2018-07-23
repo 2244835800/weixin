@@ -5,6 +5,9 @@ import com.thoughtworks.xstream.XStream;
 
 import java.util.Date;
 
+/**
+ * 返回信息
+ */
 public class TextMessageUtil{
     /**
      * 将发送消息封装成对应的xml格式

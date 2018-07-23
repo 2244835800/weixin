@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.les.weixin.dao.AdminTip">
-    <resultMap type="com.les.weixin.entity.AdminTipMsg" id="AdminTipMsg">
+<mapper namespace="com.les.ai.dao.AdminTip">
+    <resultMap type="com.les.ai.entity.AdminTipMsg" id="AdminTipMsg">
         <result property="strTipId" column="str_tip_id" jdbcType="VARCHAR"/>
         <result property="strPersonName" column="str_person_name" jdbcType="VARCHAR"/>
         <result property="strPersonTelphone" column="str_person_telphone" jdbcType="VARCHAR"/>
@@ -21,7 +21,7 @@
         <result property="y" column="y" jdbcType="VARCHAR"/>
 
     </resultMap>
-    <insert id="addTipMsg" parameterType="com.les.weixin.dao.AdminTip">
+    <insert id="addTipMsg" parameterType="com.les.ai.dao.AdminTip">
         <selectKey keyProperty="strTipId" resultType="java.lang.String" order="BEFORE">
             SELECT seq_admin_tip_msg.NEXTVAL AS strTipId FROM DUAL
         </selectKey>
@@ -91,7 +91,7 @@
 	    where comm=#{value}
 	    ORDER BY createtime desc
 	</select>
-    <select id="selectAll" resultType="com.les.weixin.entity.User" parameterType="java.util.List" >
+    <select id="selectAll" resultType="com.les.ai.entity.User" parameterType="java.util.List" >
         select
         *
         from user_t

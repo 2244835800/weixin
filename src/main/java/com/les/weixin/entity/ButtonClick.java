@@ -8,7 +8,7 @@ package com.les.weixin.entity;
  * @Time:11:14
  */
 
-public class ClickButton extends Button{
+public class ButtonClick extends Button{
 
     private String key;//菜单KEY值
 

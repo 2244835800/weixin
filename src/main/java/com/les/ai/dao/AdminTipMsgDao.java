@@ -1,4 +1,4 @@
-package com.les.weixin.dao;
+package com.les.ai.dao;
 
 
 

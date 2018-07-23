@@ -1,4 +1,4 @@
-package com.les.weixin.entity;
+package com.les.ai.entity;
 
 /**
  * @Author:hepo

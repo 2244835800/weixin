@@ -1,4 +1,4 @@
-package com.les.weixin.controller;
+package com.les.ai.controller;
 
 import com.les.weixin.util.MessageUtil;
 import com.les.weixin.util.TextMessageUtil;

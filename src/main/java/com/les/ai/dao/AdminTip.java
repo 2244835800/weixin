@@ -1,6 +1,6 @@
-package com.les.weixin.dao;
+package com.les.ai.dao;
 
-import com.les.weixin.entity.AdminTipMsg;
+import com.les.ai.entity.AdminTipMsg;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

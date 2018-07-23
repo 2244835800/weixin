@@ -1,4 +1,4 @@
-package com.les.weixin.dao;
+package com.les.ai.dao;
 
 /**
  * @Author:hepo
@@ -8,7 +8,7 @@ package com.les.weixin.dao;
  * @Time:0:02
  */
 
-import com.les.weixin.entity.User;
+import com.les.ai.entity.User;
 
 import java.util.List;
 

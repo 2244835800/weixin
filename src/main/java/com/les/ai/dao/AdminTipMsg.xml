@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.les.weixin.dao.AdminTipMsgDao">
+<mapper namespace="com.les.ai.dao.AdminTipMsgDao">
 	<!-- parameterType:参数类型,填写实体类的完整名字 -->
-    <select id="s" resultType="com.les.weixin.entity.User" parameterType="java.util.List" >
+    <select id="s" resultType="com.les.ai.entity.User" parameterType="java.util.List" >
         select
         *
         from user_t
     </select>
 
-	<!--<select id="selectAll"  resultMap="java.util.Objects" parameterType="com.les.weixin.entity.User">-->
+	<!--<select id="selectAll"  resultMap="java.util.Objects" parameterType="com.les.ai.entity.User">-->
 	<!--select * from admin_tip_msg-->
 	<!--</select>-->
 </mapper>

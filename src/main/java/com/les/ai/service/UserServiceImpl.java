@@ -1,4 +1,4 @@
-package com.les.weixin.service;
+package com.les.ai.service;
 
 /**
  * @Author:hepo
@@ -8,12 +8,11 @@ package com.les.weixin.service;
  * @Time:0:06
  */
 
-import com.les.weixin.dao.UserDao;
-import com.les.weixin.entity.User;
+import com.les.ai.dao.UserDao;
+import com.les.ai.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Service("userService")

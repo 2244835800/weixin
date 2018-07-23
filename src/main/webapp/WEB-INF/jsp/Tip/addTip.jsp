@@ -4,7 +4,7 @@
          pageEncoding="utf-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.les.weixin.pojo.SNSUserInfo,java.lang.*" %>
-<%@ page import="com.les.weixin.entity.AdminTipMsg" %>
+<%@ page import="com.les.ai.entity.AdminTipMsg" %>
 <%@ page import="java.util.ResourceBundle" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -385,7 +385,7 @@
     String appId = request.getAttribute("AppID").toString();
     String uploadurl = request.getAttribute("baseUrl").toString();
     if (null != user) {
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() ;
+        String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 
 %>
 <fieldset style="padding:10px;" id="fieldset">
@@ -977,6 +977,7 @@
             }
         };
     }
+
     // 百度地图API功能
     var map = new BMap.Map("allmap");
     var geoc = new BMap.Geocoder();
@@ -1011,6 +1012,7 @@
         map.clearOverlays();
         map.addOverlay(marker);
     }
+
     function openMap() {
         map = new BMap.Map("allmap");
         geoc = new BMap.Geocoder();
@@ -1030,6 +1032,7 @@
 
         map.addEventListener("click", showInfo);
     }
+
     function setValueForDiv(id, content) {
         var element = document.getElementById(id);
         element.innerHTML = unescape(content);
@@ -1040,6 +1043,7 @@
             }
         }
     }
+
     function getMapAddress() {
         var text = $("#map_address").text();
         $("#map").hide();

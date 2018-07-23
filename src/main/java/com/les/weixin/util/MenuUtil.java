@@ -1,9 +1,9 @@
 package com.les.weixin.util;
 
 import com.les.weixin.entity.Button;
-import com.les.weixin.entity.ClickButton;
+import com.les.weixin.entity.ButtonClick;
 import com.les.weixin.entity.Menu;
-import com.les.weixin.entity.ViewButton;
+import com.les.weixin.entity.ButtonView;
 import net.sf.json.JSONObject;
 
 
@@ -39,22 +39,22 @@ public class MenuUtil {
     public static String initMenu() {
         String result = "";
         //创建点击一级菜单
-        ClickButton button11 = new ClickButton();
+        ButtonClick button11 = new ButtonClick();
         button11.setName("我要爆料");
         button11.setKey("11");
         button11.setType("click");
 
-        ClickButton button12 = new ClickButton();
+        ButtonClick button12 = new ButtonClick();
         button12.setName("爆料反馈");
         button12.setKey("12");
         button12.setType("click");
 
-        ClickButton button13 = new ClickButton();
+        ButtonClick button13 = new ButtonClick();
         button13.setName("政务公开");
         button13.setKey("13");
         button13.setType("click");
 
-        ClickButton button14 = new ClickButton();
+        ButtonClick button14 = new ButtonClick();
         button14.setName("往期新闻");
         button14.setKey("14");
         button14.setType("click");
@@ -68,22 +68,22 @@ public class MenuUtil {
         //创建跳转型一级菜单
 
 
-        ClickButton button21 = new ClickButton();
+        ButtonClick button21 = new ButtonClick();
         button21.setName("违章查询");
         button21.setKey("21");
         button21.setType("click");
 
-        ClickButton button22 = new ClickButton();
+        ButtonClick button22 = new ButtonClick();
         button22.setName("天气查询");
         button22.setKey("22");
         button22.setType("click");
 
-        ClickButton button23 = new ClickButton();
+        ButtonClick button23 = new ButtonClick();
         button23.setName("航班查询");
         button23.setKey("23");
         button23.setType("click");
 
-        ClickButton button24 = new ClickButton();
+        ButtonClick button24 = new ButtonClick();
         button24.setName("信息动态");
         button24.setKey("24");
         button24.setType("click");
@@ -95,34 +95,34 @@ public class MenuUtil {
 
 
         //创建其他类型的菜单与click型用法一致
-//        ClickButton button31 = new ClickButton();
+//        ButtonClick button31 = new ButtonClick();
 //        button31.setName("拍照发图");
 //        button31.setType("pic_photo_or_album");
 //        button31.setKey("31");
 
-//        ClickButton button32 = new ClickButton();
+//        ButtonClick button32 = new ButtonClick();
 //        button32.setName("发送位置");
 //        button32.setKey("32");
 //        button32.setType("location_select");
-        ViewButton button31 = new ViewButton();
+        ButtonView button31 = new ButtonView();
         button31.setName("案件跟踪");
         button31.setType("view");
-        button31.setUrl("http://6f6d0da6.ngrok.io/TipMsg/tipList?pageNow=1");
+        button31.setUrl("http://9b446b4d.ngrok.io/TipMsg/tipList?pageNow=1");
 
-        ViewButton button32 = new ViewButton();
+        ButtonView button32 = new ButtonView();
         button32.setName("案件上报");
         button32.setType("view");
-        button32.setUrl("http://6f6d0da6.ngrok.io/TipMsg/TipMsg");
+        button32.setUrl("http://9b446b4d.ngrok.io/TipMsg/TipMsg");
 
-        ViewButton button33 = new ViewButton();
+        ButtonView button33 = new ButtonView();
         button33.setName("新闻发布");
         button33.setType("view");
-        button33.setUrl("http://6f6d0da6.ngrok.io/test/hello2");
+        button33.setUrl("http://9b446b4d.ngrok.io/test/hello2");
 
-        ViewButton button34 = new ViewButton();
+        ButtonView button34 = new ButtonView();
         button34.setName("办事指南");
         button34.setType("view");
-        button34.setUrl("http://6f6d0da6.ngrok.io/test/hello3");
+        button34.setUrl("http://9b446b4d.ngrok.io/TipMsg");
         //封装到一级菜单
         Button button3 = new Button();
         button3.setName("全民城管");
@@ -134,4 +134,17 @@ public class MenuUtil {
         menu.setButton(new Button[]{button1, button2, button3});
         return JSONObject.fromObject(menu).toString();
     }
+
+    public static void main(String[] args) {
+        String accessToken  = WeiXinUtil.getAccessToken().getAccess_token();
+        String menu = MenuUtil.initMenu();
+        System.out.println(menu);
+        int result = MenuUtil.createMenu(accessToken,menu);
+        if(result==0){
+            System.out.println("菜单创建成功");
+        }else{
+            System.out.println("错误码"+result);
+        }
+    }
+
 }

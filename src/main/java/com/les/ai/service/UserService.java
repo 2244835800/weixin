@@ -1,4 +1,4 @@
-package com.les.weixin.service;
+package com.les.ai.service;
 
 /**
  * @Author:hepo
@@ -7,7 +7,7 @@ package com.les.weixin.service;
  * @Date:2018/7/18
  * @Time:0:06
  */
-import com.les.weixin.entity.User;
+import com.les.ai.entity.User;
 
 import java.util.List;
 

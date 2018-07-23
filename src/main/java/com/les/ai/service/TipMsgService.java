@@ -1,8 +1,8 @@
-package com.les.weixin.service;
+package com.les.ai.service;
 
 
 
-import com.les.weixin.entity.AdminTipMsg;
+import com.les.ai.entity.AdminTipMsg;
 
 import java.util.Map;
 
