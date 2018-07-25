@@ -1,10 +1,13 @@
 package com.les.weixin.util;
 
+import com.les.ai.util.AppProperties;
 import com.les.weixin.entity.Button;
 import com.les.weixin.entity.ButtonClick;
 import com.les.weixin.entity.Menu;
 import com.les.weixin.entity.ButtonView;
 import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 
 /**
@@ -14,9 +17,24 @@ import net.sf.json.JSONObject;
  * @Date:2018/7/18/018
  * @Time:11:17
  */
+@Component
 public class MenuUtil {
 
     private static final String CTRATE_MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
+
+    private static String appID;
+
+    private static String baseUrl;
+
+    @Value("${AppID}")
+    public  void setAppID(String appID) {
+        MenuUtil.appID = appID;
+    }
+
+    @Value("${baseUrl}")
+    public  void setBaseUrl(String baseUrl) {
+        MenuUtil.baseUrl = baseUrl;
+    }
 
     /**
      * 创建菜单
@@ -107,22 +125,29 @@ public class MenuUtil {
         ButtonView button31 = new ButtonView();
         button31.setName("案件跟踪");
         button31.setType("view");
-        button31.setUrl("http://9b446b4d.ngrok.io/TipMsg/tipList?pageNow=1");
+        button31.setUrl(baseUrl+"/TipMsg/tipList?pageNow=1");
 
         ButtonView button32 = new ButtonView();
         button32.setName("案件上报");
         button32.setType("view");
-        button32.setUrl("http://9b446b4d.ngrok.io/TipMsg/TipMsg");
+        button32.setUrl(baseUrl+"/TipMsg/TipMsg");
 
         ButtonView button33 = new ButtonView();
         button33.setName("新闻发布");
         button33.setType("view");
-        button33.setUrl("http://9b446b4d.ngrok.io/test/hello2");
+        button33.setUrl(baseUrl+"/test/hello2");
 
         ButtonView button34 = new ButtonView();
         button34.setName("办事指南");
         button34.setType("view");
-        button34.setUrl("http://9b446b4d.ngrok.io/TipMsg");
+        button34.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+
+//                        AppProperties.getValue("AppID")+
+                appID+
+                "&redirect_uri=" +
+//                AppProperties.getValue("baseUrl")  +
+                baseUrl +
+                "/addTipServlet&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+        System.out.println("url is "+button34.getUrl());
         //封装到一级菜单
         Button button3 = new Button();
         button3.setName("全民城管");

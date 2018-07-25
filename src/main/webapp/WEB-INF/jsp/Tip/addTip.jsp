@@ -398,7 +398,7 @@
         <%--<input type="hidden" name="openid" id="strWeixinId" value="<%=user.getOpenId()%>">--%>
         <div style="" class="div_tip">
             <font class="font_tip">&nbsp;&nbsp;&nbsp;举报人：</font>
-            <input placeholder="请填写联系人姓名" class="input_tip" name="strPersonName">
+            <input placeholder="请填写联系人姓名" class="input_tip" name="strPersonName" id="strPersonName">
         </div>
         <div style="margin-top:20px;" class="div_tip">
             <font class="font_tip">联系方式：</font>
@@ -504,6 +504,7 @@
             success: function (res) {
                 thisLat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
                 thisLon = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                $("#strPersonName").val("Hello World");
                 //逆地理编码
                 $.ajax({
                     type: "POST",

@@ -11,7 +11,7 @@
 <html>
 <head>
     <link href="<%=request.getContextPath()%>/css/common.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-1.7.2.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/ajaxfileupload.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/config.js"></script>
@@ -504,6 +504,7 @@
             success: function (res) {
                 thisLat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
                 thisLon = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                $("#strPersonName").val("Hello World");
                 //逆地理编码
                 $.ajax({
                     type: "POST",

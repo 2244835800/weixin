@@ -10,7 +10,7 @@ import com.les.ai.entity.AdminTipMsg;
 import com.les.ai.entity.AdminTipPicture;
 import com.les.ai.service.TipMsgService;
 import com.les.weixin.entity.Page;
-import com.les.weixin.util.AppProperties;
+import com.les.ai.util.AppProperties;
 import com.les.weixin.util.ClientUtil;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -213,8 +213,8 @@ public class TipMsgController {
     @RequestMapping("/TipMsg")
     public String TipMsg(Model model, HttpServletRequest request, HttpServletResponse response, AdminTipMsg tipMsg) {
         model.addAttribute("id", "5");
-//        return "Tip/addTipMsg";
-        return "Tip/addTip";
+        return "Tip/addTipMsg";
+//        return "Tip/addTip";
     }
 
     /**

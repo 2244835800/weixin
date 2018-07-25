@@ -1,6 +1,6 @@
 package com.les.weixin.util;
 
-import com.les.weixin.entity.AccessToken;
+import com.les.ai.util.AppProperties;
 import com.les.weixin.entity.Menu;
 import com.les.weixin.entity.OldAccessToken;
 import com.les.weixin.pojo.SNSUserInfo;
@@ -168,6 +168,8 @@ public class WeChatUtil {
         WeixinOauth2Token wat = null;
         // 拼接请求地址
         String requestUrl = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=APPID&secret=SECRET&code=CODE&grant_type=authorization_code";
+//        requestUrl = requestUrl.replace("APPID", AppProperties.getValue("AppID"));
+//        requestUrl = requestUrl.replace("SECRET", AppProperties.getValue("AppSecret"));
         requestUrl = requestUrl.replace("APPID", AppProperties.getValue("AppID"));
         requestUrl = requestUrl.replace("SECRET", AppProperties.getValue("AppSecret"));
         requestUrl = requestUrl.replace("CODE", code);
