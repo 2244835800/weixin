@@ -395,7 +395,7 @@
         <input type="hidden" name="strTipPic2" id="strTipPic2">
         <input type="hidden" name="x" id="x">
         <input type="hidden" name="y" id="y">
-        <%--<input type="hidden" name="openid" id="strWeixinId" value="<%=user.getOpenId()%>">--%>
+        <input type="hidden" name="openid" id="strWeixinId" value="<%=user.getOpenId()%>">
         <div style="" class="div_tip">
             <font class="font_tip">&nbsp;&nbsp;&nbsp;举报人：</font>
             <input placeholder="请填写联系人姓名" class="input_tip" name="strPersonName">
@@ -469,7 +469,7 @@
     var state = "<%=state%>"
     var pageUrl = baseUrl + "testAdd.jsp";
     var thisLon, thisLat, geocodeMsg
-
+    var openId="<%=user.getOpenId()%>"
     function removeLi(e) {
         $(e).parent().remove();
         if ($("#upload").css("display") == "none") {
@@ -486,7 +486,7 @@
         success: function (data) {
 //            $.parseJSON(data);
             wx.config({
-                debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: appid, // 必填，公众号的唯一标识
                 timestamp: data.timestamp, // 必填，生成签名的时间戳
                 nonceStr: data.nonceStr, // 必填，生成签名的随机串
@@ -504,7 +504,6 @@
             success: function (res) {
                 thisLat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
                 thisLon = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-                $("#strPersonName").val("Hello World");
                 //逆地理编码
                 $.ajax({
                     type: "POST",

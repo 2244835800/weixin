@@ -179,56 +179,56 @@
         pre, table {
             page-break-inside: avoid
         }
+        .list>a,.list>span{
+            float: left;
+        }
     }</style>
-    <title>举报详情</title></head>
+    <title>举报列表</title></head>
 <body style="background-color:#f3f3f3;">
 
-<div class="lb">
-    <span style="font-size: 18px;margin-top: 10px;">举报时间：</span><span
-        style="font-size: 18px;">${adminTipMsg.commitTime}</span>
-    <br> <br>
-    <span style="font-size: 18px;margin-top: 10px;">举报地点：</span><span
-        style="font-size: 18px;">${adminTipMsg.comments}</span>
-    <br> <br>
-    <span style="font-size: 18px;margin-top: 10px;">举报描述：</span><span
-        style="font-size: 18px;">${adminTipMsg.strTipDescription}</span>
-    <br> <br>
-    <span style="font-size: 18px;margin-top: 10px;">举报电话：</span><span
-        style="font-size: 18px;">${adminTipMsg.strPersonTelphone}</span>
-    <br> <br>
-    <c:if test="${adminTipMsg.strPic1!=''}">
+<%
+    // 获取由OAuthServlet中传入的参数
+    SNSUserInfo user = (SNSUserInfo) request.getAttribute("snsUserInfo");
+    String state = request.getAttribute("state").toString();
+    if (null != user) {
+        List<AdminTipMsg> list = (List) request.getAttribute("list");
+%>
+<ul class="box">
+    <%
+        for (int i = 0; i < list.size(); i++) {
+    %>
 
-        <img src="${adminTipMsg.strPic1}" style="height: 150px;width: 150px;">
-    </c:if>
-    <c:if test="${adminTipMsg.strPic2!=''}">
-        <img src="${adminTipMsg.strPic2}" style="height: 150px;width: 150px;">
-    </c:if>
-    <br>
-    <span style="font-size: 18px;">处理状态：</span>
-    <span style="font-size: 18px;">
-    <c:if test="${adminTipMsg.strTipState==0}">未处理</c:if>
-    <c:if test="${adminTipMsg.strTipState==1}">已受理</c:if>
-    <c:if test="${adminTipMsg.strTipState==2}">处理中</c:if>
-    <c:if test="${adminTipMsg.strTipState==3}">处理完成</c:if>
-    <c:if test="${adminTipMsg.strTipState==-1}">处理完成</c:if>
-    </span>
-    <br> <br>
-    <span style="font-size: 18px;">处理内容：</span>
-    <span style="font-size: 18px;">
-    <c:if test="${adminTipMsg.strTipState==0}">您好，针对您反映的问题，县城市管理部门将很快受理，感谢您对城管工作的关心与支持，谢谢！</c:if>
-    <c:if test="${adminTipMsg.strTipState==1}">您好，针对您反映的问题，县城市管理部门已受理，感谢您对城管工作的关心与支持，谢谢！</c:if>
-    <c:if test="${adminTipMsg.strTipState==2}">您好，针对您反映的问题，县城市管理部门已安排相关部门进行处理，感谢您对城管工作的关心与支持，谢谢！</c:if>
-    <c:if test="${adminTipMsg.strTipState==3}">您好，您反映的问题，县城市管理部门已安排相关部门处理结束，感谢您对城管工作的关心与支持，谢谢！</c:if>
-    <c:if test="${adminTipMsg.strTipState==-1}">您好，您反映的问题，县城市管理部门退回处理，具体原因请致电县城管局，感谢您对城管工作的关心与支持，谢谢！</c:if>
-    </span>
-    <br> <br>
+    <li class="list" style="list-style-type:none;margin-left: -40px;line-height: 30px;width: 100%;overflow: hidden;">
+        <a style="float: left;width: 100%;word-wrap: break-word;" href="TipMsg/chatDetail?tipId=<%=list.get(i).getStrTipId() %>">
+            <%=list.get(i).getStrTipDescription() %>
+            <span style="float:right;color:#666;"><%=list.get(i).getCommitTime() %></span>
+        </a>
 
-</div>
+    </li>
+
+    <%
+        }
+    %>
+</ul>
+<%
+
+    } else
+        out.print("用户不同意授权,未获取到用户信息！");
+%>
 
 
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
+        //限制字符个数
+        $(".cot_btn-style").each(function () {
+
+            var maxwidth = 4;
+            if ($(this).text().length > maxwidth) {
+                $(this).text($(this).text().substring(0, maxwidth));
+                $(this).html($(this).html() + '…');
+            }
+        });
 
 
     });

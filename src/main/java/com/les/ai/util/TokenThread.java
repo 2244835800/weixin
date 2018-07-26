@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
 public class TokenThread implements Runnable {
     private static Logger log = LoggerFactory.getLogger(TokenThread.class);
     // 第三方用户唯一凭证
-    public static String appid = "";
+    public static String appid = AppProperties.getValue("AppID");
     // 第三方用户唯一凭证密钥
-    public static String appsecret = "";
+    public static String appsecret = AppProperties.getValue("AppSecret");
     public static AccessToken token = null;
 
     public void run() {

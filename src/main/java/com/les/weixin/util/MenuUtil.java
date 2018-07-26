@@ -130,13 +130,17 @@ public class MenuUtil {
         ButtonView button32 = new ButtonView();
         button32.setName("案件上报");
         button32.setType("view");
-        button32.setUrl(baseUrl+"/TipMsg/TipMsg");
+        button32.setUrl("https://mp.weixin.qq.com/s?__biz=MjM5NzM1MjE5MA==&tempkey=OTY3X0s0SXppQ1cvMys3ZEpwaVMtSGI2a09lWEZpZ1JmLURkd0RnTzVWSDdJMmxDRGRZVlNuekpicVJPUG5MT2d0ajVHSkRkY2x1cDhxZ1o5ZjkyRkNBLWNtQ21jY1NDX2JZYU1Dcy14M0FCLUZKeExlMkU0SkZhNjNMMVFzWXh0OFlvS3ZyajNOeGVOeUNGUkZvZ0JXM0RIX0RJZVpHOU9lS1VDUnNFRlF%2Bfg%3D%3D&chksm=26da069211ad8f8452e3b041845c0510888e0bca791c8e66bdd3190ed6d455a83b1d4b692eb7#rd");
 
         ButtonView button33 = new ButtonView();
         button33.setName("新闻发布");
         button33.setType("view");
-        button33.setUrl(baseUrl+"/test/hello2");
-
+        button33.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+
+                AppProperties.getValue("AppID")+
+                "&redirect_uri=" +
+                AppProperties.getValue("baseUrl") +
+                "/tipListServlet&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+        System.out.println("tipListServlet url is "+button33.getUrl());
         ButtonView button34 = new ButtonView();
         button34.setName("办事指南");
         button34.setType("view");
@@ -147,7 +151,7 @@ public class MenuUtil {
 //                AppProperties.getValue("baseUrl")  +
                 baseUrl +
                 "/addTipServlet&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
-        System.out.println("url is "+button34.getUrl());
+        System.out.println("addTipServlet url is "+button34.getUrl());
         //封装到一级菜单
         Button button3 = new Button();
         button3.setName("全民城管");

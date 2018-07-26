@@ -1,8 +1,8 @@
-package com.les.weixin.servlet;
+package com.les.ai.servlet;
 
+import com.les.ai.util.AppProperties;
 import com.les.weixin.pojo.SNSUserInfo;
 import com.les.weixin.pojo.WeixinOauth2Token;
-import com.les.ai.util.AppProperties;
 import com.les.weixin.util.WeChatUtil;
 
 import javax.servlet.ServletException;

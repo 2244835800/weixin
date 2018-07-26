@@ -80,7 +80,7 @@ public class TipMsgController {
             }
             Map<String, String> resultMap = new HashMap<String, String>();
             resultMap.put("filename", fileName);
-            resultMap.put("path", "media" + File.separator + filePathName);
+            resultMap.put("path", File.separator + filePathName);
             System.out.println("upImg:path:" + "media" + File.separator + filePathName);
             response.getWriter().print(JSONObject.fromObject(resultMap));
         } catch (Exception es) {
@@ -178,27 +178,28 @@ public class TipMsgController {
 
         tipMsg.setStrTipSource("1");
         tipMsg.setStrTipState("0");
+
         tipMsg.setCommitTime(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-        tipMsg.setStrPic1(strTipPic1.replace("\\", "/"));
-        tipMsg.setStrPic2(strTipPic2.replace("\\", "/"));
+        if(null!=strTipPic1&&""!=strTipPic1){
+            tipMsg.setStrPic1(strTipPic1.replace("\\", "/"));
+            tipMsg.setStrPic2(strTipPic2.replace("\\", "/"));
+        }
         tipMsg.setStrTipTitle(tipMsg.getStrPersonName() + "微信举报");
         String x = tipMsg.getX();
         String y = tipMsg.getY();
         Double lat = Double.parseDouble(y);
         Double lng = Double.parseDouble(x);
-        Projection proj = ProjectionFactory.getNamedPROJ4CoordinateSystem("epsg:4547");
+//        Projection proj = ProjectionFactory.getNamedPROJ4CoordinateSystem("epsg:4547");
         Point2D.Double src = new Point2D.Double(lng, lat);
         Point2D.Double dst = new Point2D.Double(0, 0);
-        proj.transform(src, dst);
-        tipMsg.setX(new DecimalFormat("#.####").format(dst.getX()));
-        tipMsg.setY(new DecimalFormat("#.####").format(dst.getY()));
+//        proj.transform(src, dst);
+        tipMsg.setX(new DecimalFormat("#.####").format(src.getX()));
+        tipMsg.setY(new DecimalFormat("#.####").format(src.getY()));
 
         System.out.println("tipmsg:" +
                 tipMsg.getStrPic1() + "-" +
                 tipMsg.getStrPic2() + "-" +
                 tipMsg.getOpenid() + "-" +
-                tipMsg.getX() + "-" +
-                tipMsg.getY() + "-" +
                 tipMsg.getX() + "-" +
                 tipMsg.getY());
 
@@ -303,8 +304,8 @@ public class TipMsgController {
     @RequestMapping("/chatDetail")
     public String chatDetail(Model model, String tipId) {
         AdminTipMsg adminTipMsg = adminTip.selectById(tipId);
-        adminTipMsg.setStrPic1(AppProperties.getValue("CG.SYSTEM.MEDIA.URL") + adminTipMsg.getStrPic1());
-        adminTipMsg.setStrPic2(adminTipMsg.getStrPic2() != null ? AppProperties.getValue("CG.SYSTEM.MEDIA.URL") + adminTipMsg.getStrPic2() : "");
+//        adminTipMsg.setStrPic1(AppProperties.getValue("CG.SYSTEM.MEDIA.URL") + adminTipMsg.getStrPic1());
+//        adminTipMsg.setStrPic2(adminTipMsg.getStrPic2() != null ? AppProperties.getValue("CG.SYSTEM.MEDIA.URL") + adminTipMsg.getStrPic2() : "");
         model.addAttribute("adminTipMsg", adminTipMsg);
 //        model.addAllAttributes("")
 //        List<AdminTipImg> list = admintippictureDao.selectListByTipId(tipId);

@@ -3,6 +3,7 @@ package com.les.ai.controller;
 import com.les.ai.util.AppProperties;
 import com.les.ai.util.CommonUtil;
 import com.les.ai.util.JSTokenThread;
+import com.les.weixin.util.WeiXinUtil;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,8 +47,11 @@ public class WeiXinGetTicket {
         JSONObject resultObject = new JSONObject();
         String nonceStr = CommonUtil.create_nonce_str();
         String timestamp = CommonUtil.create_timestamp();
-        JSTokenThread.token.getJsToken();
-        String signature = CommonUtil.sign2(JSTokenThread.token.getJsToken(),
+//        JSTokenThread jsTokenThread=new JSTokenThread();
+//        JSTokenThread.token.getJsToken();
+
+       String jsToken= CommonUtil.getJSToken(WeiXinUtil.getAccessToken().getAccess_token()).getJsToken();
+        String signature = CommonUtil.sign2(jsToken,
                 nonceStr,
                 timestamp,
                 AppProperties.getValue("baseUrl")+"/addTipServlet?code="+code+"&state="+state);
