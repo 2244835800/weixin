@@ -1,7 +1,9 @@
 package com.les.ai.controller;
 
+import com.les.ai.util.AppProperties;
 import com.les.weixin.util.MessageUtil;
 import com.les.weixin.util.TextMessageUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -30,8 +32,10 @@ public class Signature {
 //    private UserMapper userMapper;
 
 
-    private String TOKEN = "souvcweixin";
+//    private String TOKEN = AppProperties.getValue("weixin.signature.token");
 
+    @Value("${weixin.signature.token}")
+    private String TOKEN = AppProperties.getValue("weixin.signature.token");
 
     @GetMapping("/hello")
     public String test(@RequestParam("signature") String signature,
