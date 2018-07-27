@@ -50,7 +50,7 @@ public class Signature {
         //校验
         if (myString != null && myString != "" && myString.equals(signature)) {
             System.out.println("签名校验通s过");
-            //如果检验成功原样返回echostr，微信服务器接收到此输出，才会确认检验完成。
+            //如果检验成功原样返回echostr，微信服务器接收到此输出，才会确认检验1完成。
             return echostr;
         } else {
             System.out.println("签名校验失败");
