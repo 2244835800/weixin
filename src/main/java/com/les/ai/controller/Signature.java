@@ -30,7 +30,7 @@ public class Signature {
 //    private UserMapper userMapper;
 
 
-    private String TOKEN = "good";
+    private String TOKEN = "souvcweixin";
 
 
     @GetMapping("/hello")
