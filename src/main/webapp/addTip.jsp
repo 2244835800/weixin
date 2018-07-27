@@ -370,7 +370,7 @@
         height: 100%;
     }
     </style>
-    <title>微信举报</title></head>
+    <title>案件上报</title></head>
 <body style="background-color:#f3f3f3;">
 <div id="map" style="display:none">
     <div id="allmap" style="width: 100%;height: 500 ;margin: 0;"></div>
@@ -389,7 +389,7 @@
 
 %>
 <fieldset style="padding:10px;" id="fieldset">
-    <legend style="margin-left:20px;">微信举报</legend>
+    <legend style="margin-left:20px;">案件上报</legend>
     <form action="<%=request.getContextPath()%>/TipMsg/addTipMsg" method="post" id="form">
         <input type="hidden" name="strTipPic1" id="strTipPic1">
         <input type="hidden" name="strTipPic2" id="strTipPic2">

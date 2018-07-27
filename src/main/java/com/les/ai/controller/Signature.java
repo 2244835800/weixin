@@ -14,7 +14,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Map;
 
-//import com.les.weixin.mapper.UserMapper;
 
 /**
  * @Author:hepo
@@ -25,7 +24,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/test")
-public class Hello {
+public class Signature {
 
 //    @Autowired
 //    private UserMapper userMapper;
@@ -111,7 +110,8 @@ public class Hello {
         }
         try {
             out = response.getWriter();
-            out.write(message);
+            if (null != message)
+                out.write(message);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

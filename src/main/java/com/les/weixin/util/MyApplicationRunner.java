@@ -1,9 +1,9 @@
-package com.les.t;
+package com.les.weixin.util;
 
 /**
  * @Author:hepo
  * @Version:v1.0
- * @Description:
+ * @Description:每次启动都会重新创建菜单
  * @Date:2018/7/24/024
  * @Time:16:14
  */

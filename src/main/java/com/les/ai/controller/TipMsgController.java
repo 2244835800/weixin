@@ -1,16 +1,13 @@
 package com.les.ai.controller;
 
 
-import com.jhlabs.map.proj.Projection;
-import com.jhlabs.map.proj.ProjectionFactory;
 import com.les.ai.dao.AdminTip;
 import com.les.ai.dao.AdminTipImg;
-import com.les.ai.dao.AdminTipMsgDao;
 import com.les.ai.entity.AdminTipMsg;
 import com.les.ai.entity.AdminTipPicture;
 import com.les.ai.service.TipMsgService;
-import com.les.weixin.entity.Page;
 import com.les.ai.util.AppProperties;
+import com.les.weixin.entity.Page;
 import com.les.weixin.util.ClientUtil;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -36,8 +33,6 @@ public class TipMsgController {
 
     @Autowired
     private AdminTip adminTip;
-    @Autowired
-    private AdminTipMsgDao admintipmsgDao;
     @Autowired
     private TipMsgService tipmsgService;
     @Autowired

@@ -91,9 +91,4 @@
 	    where comm=#{value}
 	    ORDER BY createtime desc
 	</select>
-    <select id="selectAll" resultType="com.les.ai.entity.User" parameterType="java.util.List" >
-        select
-        *
-        from user_t
-    </select>
 </mapper>

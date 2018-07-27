@@ -22,19 +22,19 @@ public class MenuUtil {
 
     private static final String CTRATE_MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
 
-    private static String appID;
-
-    private static String baseUrl;
-
-    @Value("${AppID}")
-    public  void setAppID(String appID) {
-        MenuUtil.appID = appID;
-    }
-
-    @Value("${baseUrl}")
-    public  void setBaseUrl(String baseUrl) {
-        MenuUtil.baseUrl = baseUrl;
-    }
+//    private static String appID;
+//
+//    private static String baseUrl;
+//
+//    @Value("${AppID}")
+//    public  void setAppID(String appID) {
+//        MenuUtil.appID = appID;
+//    }
+//
+//    @Value("${baseUrl}")
+//    public  void setBaseUrl(String baseUrl) {
+//        MenuUtil.baseUrl = baseUrl;
+//    }
 
     /**
      * 创建菜单
@@ -123,35 +123,27 @@ public class MenuUtil {
 //        button32.setKey("32");
 //        button32.setType("location_select");
         ButtonView button31 = new ButtonView();
-        button31.setName("案件跟踪");
+        button31.setName("案件上报");
         button31.setType("view");
-        button31.setUrl(baseUrl+"/TipMsg/tipList?pageNow=1");
-
+        button31.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+ AppProperties.getValue("AppID")+ "&redirect_uri=" + AppProperties.getValue("baseUrl")  + "/addTipServlet&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+        System.out.println("addTipServlet url is "+button31.getUrl());
         ButtonView button32 = new ButtonView();
-        button32.setName("案件上报");
+        button32.setName("我的案件");
         button32.setType("view");
-        button32.setUrl("https://mp.weixin.qq.com/s?__biz=MjM5NzM1MjE5MA==&tempkey=OTY3X0s0SXppQ1cvMys3ZEpwaVMtSGI2a09lWEZpZ1JmLURkd0RnTzVWSDdJMmxDRGRZVlNuekpicVJPUG5MT2d0ajVHSkRkY2x1cDhxZ1o5ZjkyRkNBLWNtQ21jY1NDX2JZYU1Dcy14M0FCLUZKeExlMkU0SkZhNjNMMVFzWXh0OFlvS3ZyajNOeGVOeUNGUkZvZ0JXM0RIX0RJZVpHOU9lS1VDUnNFRlF%2Bfg%3D%3D&chksm=26da069211ad8f8452e3b041845c0510888e0bca791c8e66bdd3190ed6d455a83b1d4b692eb7#rd");
+        button32.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+ AppProperties.getValue("AppID")+ "&redirect_uri=" + AppProperties.getValue("baseUrl") + "/tipListServlet&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+        System.out.println("tipListServlet url is "+button32.getUrl());
+
 
         ButtonView button33 = new ButtonView();
         button33.setName("新闻发布");
         button33.setType("view");
-        button33.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+
-                AppProperties.getValue("AppID")+
-                "&redirect_uri=" +
-                AppProperties.getValue("baseUrl") +
-                "/tipListServlet&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
-        System.out.println("tipListServlet url is "+button33.getUrl());
+        button33.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+ AppProperties.getValue("AppID")+ "&redirect_uri=" + AppProperties.getValue("baseUrl") + "/tipListServlet&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
+
         ButtonView button34 = new ButtonView();
         button34.setName("办事指南");
         button34.setType("view");
-        button34.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid="+
-//                        AppProperties.getValue("AppID")+
-                appID+
-                "&redirect_uri=" +
-//                AppProperties.getValue("baseUrl")  +
-                baseUrl +
-                "/addTipServlet&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect");
-        System.out.println("addTipServlet url is "+button34.getUrl());
+        button34.setUrl("https://mp.weixin.qq.com/s?__biz=MjM5NzM1MjE5MA==&tempkey=OTY3X0lkcUQ1aUw5VDdCL0pLQVctSGI2a09lWEZpZ1JmLURkd0RnTzVWSDdJMmxDRGRZVlNuekpicVJPUG5MT2d0ajVHSkRkY2x1cDhxZ1o5ZjkyRkNBLWNtQ21jY1NDX2JZYU1Dcy14M0FCLUZKeExlMkU0SkZhNjNMMVFzWXh0OFlvS3ZyajNOeGVOeUNGUkZvZzlBVEVKRUY5ZkdjQW4wNUxyNlVBbVF%2Bfg%3D%3D&chksm=26da069211ad8f847989c7acc6c4f5a9623d0bca791c8e66bdd3190ed6d455a83b1d4b692eb7#rd");
+
         //封装到一级菜单
         Button button3 = new Button();
         button3.setName("全民城管");
