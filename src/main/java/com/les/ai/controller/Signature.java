@@ -29,7 +29,7 @@ import java.util.Map;
 public class Signature {
 
 //    @Autowired
-//    private UserMapper  userMapper;
+//    private UserMapper userMapper;
 
 
 //    private String TOKEN = AppProperties.getValue("weixin.signature.token");
