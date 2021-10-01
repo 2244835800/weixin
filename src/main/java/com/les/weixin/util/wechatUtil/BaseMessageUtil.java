@@ -1,4 +1,4 @@
-package com.les.weixin.util;
+package com.les.weixin.util.wechatUtil;
 
 /**
  *

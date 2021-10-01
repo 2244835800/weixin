@@ -2,13 +2,11 @@ package com.les.ai.servlet;
 
 import com.les.ai.dao.AdminTip;
 import com.les.ai.entity.AdminTipMsg;
-import com.les.weixin.pojo.SNSUserInfo;
-import com.les.weixin.pojo.WeixinOauth2Token;
-import com.les.weixin.util.WeChatUtil;
+import com.les.weixin.entity.UserInfo;
+import com.les.weixin.entity.WeixinOauth2Token;
+import com.les.weixin.util.wechatUtil.WeChatUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import javax.servlet.ServletContext;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,14 +21,10 @@ public class TipListServlet extends HttpServlet {
     @Autowired
     private AdminTip adminTipMsgDao;
 
-
 //    public void init() throws ServletException {
 //        super.init();
-//
 //        ServletContext servletContext = this.getServletContext();
-//
 //        WebApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(servletContext);
-//
 //        adminTipMsgDao = (AdminTip) ctx.getBean("adminTipMsgDao");
 //    }
 
@@ -53,20 +47,19 @@ public class TipListServlet extends HttpServlet {
             String openId = weixinOauth2Token.getOpenId();
             System.out.println("tipList：openId:" + openId);
             // 获取用户信息
-            SNSUserInfo snsUserInfo = WeChatUtil.getSNSUserInfo(accessToken, openId);
+            UserInfo userInfo = WeChatUtil.getUserInfo(accessToken, openId);
 
-            List<AdminTipMsg> tiplist = adminTipMsgDao.selectListByWeixinId(snsUserInfo.getOpenId());
+            List<AdminTipMsg> tiplist = adminTipMsgDao.selectListByWeixinId(userInfo.getOpenId());
             System.out.println("tipListCount：" + tiplist.size());
-//            System.out.println("tipListUser："+snsUserInfo.toString());
+//            System.out.println("tipListUser："+userInfo.toString());
 
             request.setAttribute("list", tiplist);
             // 设置要传递的参数
-            request.setAttribute("snsUserInfo", snsUserInfo);
+            request.setAttribute("snsUserInfo", userInfo);
             request.setAttribute("state", state);
         }
         // 跳转到tipList.jsp
         request.getRequestDispatcher("tipList.jsp").forward(request, response);
-
 
 //        List<AdminTipMsg> tiplist=adminTipMsgDao.selectByOpenId();
 //

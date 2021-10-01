@@ -1,13 +1,4 @@
-package com.les.weixin.util;
-
-/**
- * @Author:hepo
- * @Version:v1.0
- * @Description:
- * @Date:2018/7/18/018
- * @Time:11:20
- */
-
+package com.les.weixin.util.wechatUtil;
 import com.les.weixin.entity.AccessToken;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;
@@ -18,32 +9,61 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
-//import redis.clients.jedis.Jedis;
-//
-//import com.yuanjun.weixindemo.bean.AccessToken;
-//import com.yuanjun.weixindemo.redis.RedisUtil;
-
 /**
- *
- * 类名称: WeiXinUtil
- * 类描述:
- * @author yuanjun
- * 创建时间:2017年12月8日下午4:38:42
+ * @Author:hepo yuanjun
+ * @Version:v1.0
+ * @Description:
+ * @Date:2018/7/18/018
+ * @Time:11:20
  */
+
 public class WeiXinUtil {
+    private final static Logger log = LoggerFactory.getLogger(WeiXinUtil.class);
+    //开发者id
+    private static final String APPID = "wxae889c7ca189c53d";
+    //开发者秘钥
+    private static final String APPSECRET="3e2c39fe75f27af874c3616bcf3daf72";
+    private static final String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+
     /**
-     * 开发者id
+     * 从接口中获取token
+     * @return
      */
-    private static final String APPID = "wxc852aacf8770b24f";
+    public static AccessToken getAccessToken(){
+        log.info("从接口中获取");
+//        RedisProperties.Jedis jedis  = RedisUtil.getJedis();
+        AccessToken token = new AccessToken();
+        String url = ACCESS_TOKEN_URL.replace("APPID", APPID).replace("APPSECRET", APPSECRET);
+        JSONObject json = doGetstr(url);
+        if(json!=null){
+            token.setToken(json.getString("access_token"));
+            token.setExpiresIn(json.getInt("expires_in"));
+//            jedis.set("access_token", json.getString("access_token"));
+//            jedis.expire("access_token", 60*60*2);
+        }
+//        RedisUtil.returnResource(jedis);
+        return token;
+    }
     /**
-     * 开发者秘钥
+     * 获取凭证
+     * @return
      */
-    private static final String APPSECRET="236121003498d64ffda37276c3dc7b0c";
-    private static final String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?"
-            + "grant_type=client_credential&appid=APPID&secret=APPSECRET";
+//    public static String  getAccess_Token(){
+//        System.out.println("从缓存中读取");
+//        Jedis jedis  = RedisUtil.getJedis();
+//        String access_token = jedis.get("access_token");
+//        if(access_token==null){
+//            AccessToken token = getAccessToken();
+//            access_token = token.getToken();
+//        }
+//        RedisUtil.returnResource(jedis);
+//        return access_token;
+//    }
     /**
      * 处理doget请求
      * @param url
@@ -64,7 +84,6 @@ public class WeiXinUtil {
             e.printStackTrace();
         }
         return jsonObject;
-
     }
     /**
      * 处理post请求
@@ -86,37 +105,6 @@ public class WeiXinUtil {
         }
         return jsonObject;
     }
-
-    public static AccessToken getAccessToken(){
-        System.out.println("从接口中获取");
-//        RedisProperties.Jedis jedis  = RedisUtil.getJedis();
-        AccessToken token = new AccessToken();
-        String url = ACCESS_TOKEN_URL.replace("APPID", APPID).replace("APPSECRET", APPSECRET);
-        JSONObject json = doGetstr(url);
-        if(json!=null){
-            token.setAccess_token(json.getString("access_token"));
-            token.setExpires_in(json.getInt("expires_in"));
-//            jedis.set("access_token", json.getString("access_token"));
-//            jedis.expire("access_token", 60*60*2);
-        }
-//        RedisUtil.returnResource(jedis);
-        return token;
-    }
-    /**
-     * 获取凭证
-     * @return
-     */
-//    public static String  getAccess_Token(){
-//        System.out.println("从缓存中读取");
-//        Jedis jedis  = RedisUtil.getJedis();
-//        String access_token = jedis.get("access_token");
-//        if(access_token==null){
-//            AccessToken token = getAccessToken();
-//            access_token = token.getAccess_token();
-//        }
-//        RedisUtil.returnResource(jedis);
-//        return access_token;
-//    }
 
 }
 

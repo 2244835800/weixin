@@ -1,12 +1,11 @@
-package com.les.weixin.util;
+package com.les.weixin.util.wechatUtil;
 
-import com.les.ai.util.AppProperties;
 import com.les.weixin.entity.Button;
 import com.les.weixin.entity.ButtonClick;
 import com.les.weixin.entity.Menu;
 import com.les.weixin.entity.ButtonView;
+import com.les.weixin.util.OtherUtil.AppProperties;
 import net.sf.json.JSONObject;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
@@ -47,10 +46,9 @@ public class MenuUtil {
         int result = Integer.MIN_VALUE;
         String url = CTRATE_MENU_URL.replaceAll("ACCESS_TOKEN", accessToken);
         JSONObject json = WeiXinUtil.doPoststr(url, Menu);
-        if (json != null) {
+        if (json != null)
             //从返回的数据包中取数据{"errcode":0,"errmsg":"ok"}
             result = json.getInt("errcode");
-        }
         return result;
     }
 
@@ -82,9 +80,7 @@ public class MenuUtil {
         button1.setType("click");
         button1.setSub_button(new Button[]{button11, button12, button13, button14});
 
-
         //创建跳转型一级菜单
-
 
         ButtonClick button21 = new ButtonClick();
         button21.setName("违章查询");
@@ -110,7 +106,6 @@ public class MenuUtil {
         button2.setName("便民服务");
         button2.setType("click");
         button2.setSub_button(new Button[]{button21, button22, button23, button24});
-
 
         //创建其他类型的菜单与click型用法一致
 //        ButtonClick button31 = new ButtonClick();
@@ -154,18 +149,6 @@ public class MenuUtil {
         Menu menu = new Menu();
         menu.setButton(new Button[]{button1, button2, button3});
         return JSONObject.fromObject(menu).toString();
-    }
-
-    public static void main(String[] args) {
-        String accessToken  = WeiXinUtil.getAccessToken().getAccess_token();
-        String menu = MenuUtil.initMenu();
-        System.out.println(menu);
-        int result = MenuUtil.createMenu(accessToken,menu);
-        if(result==0){
-            System.out.println("菜单创建成功");
-        }else{
-            System.out.println("错误码"+result);
-        }
     }
 
 }

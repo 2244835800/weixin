@@ -1,4 +1,4 @@
-package com.les.weixin.util;
+package com.les.weixin.util.wechatUtil;
 
 import com.les.weixin.entity.MessageText;
 import com.thoughtworks.xstream.XStream;

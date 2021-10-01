@@ -1,6 +1,7 @@
 package com.les.ai.util;
 
-import com.les.weixin.util.MyX509TrustManager;
+import com.les.weixin.entity.AccessToken;
+import com.les.weixin.util.wechatUtil.MyX509TrustManager;
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import org.slf4j.Logger;
@@ -43,27 +44,22 @@ public class CommonUtil {
         try {
             // 创建SSLContext对象，并使用我们指定的信任管理器初始化
             TrustManager[] tm = {new MyX509TrustManager()};
-
             SSLContext sslContext = SSLContext.getInstance("TLSv1", "SunJSSE");
             sslContext.init(null, tm, new java.security.SecureRandom());
             // 从上述SSLContext对象中得到SSLSocketFactory对象
             SSLSocketFactory ssf = sslContext.getSocketFactory();
-
-			/*SocketFactory sf = SSLSocketFactory.getDefault();  
+			/*SocketFactory sf = SSLSocketFactory.getDefault();
             SSLSocket socket = (SSLSocket) sf.createSocket("localhost", 8443);
 			String[] protocols = { "TLSv1" };
 			socket.setEnabledProtocols(protocols);*/
-
             URL url = new URL(requestUrl);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setSSLSocketFactory(ssf);
-
             conn.setDoOutput(true);
             conn.setDoInput(true);
             conn.setUseCaches(false);
             // 设置请求方式（GET/POST）
             conn.setRequestMethod(requestMethod);
-
             // 当outputStr不为null时向输出流写数据
             if (null != outputStr) {
                 OutputStream outputStream = conn.getOutputStream();
@@ -71,7 +67,6 @@ public class CommonUtil {
                 outputStream.write(outputStr.getBytes("UTF-8"));
                 outputStream.close();
             }
-
             // 从输入流读取返回内容
             InputStream inputStream = conn.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
@@ -81,7 +76,6 @@ public class CommonUtil {
             while ((str = bufferedReader.readLine()) != null) {
                 buffer.append(str);
             }
-
             // 释放资源
             bufferedReader.close();
             inputStreamReader.close();

@@ -20,6 +20,5 @@ public class Menu {
         this.button = button;
     }
 
-
 }
 

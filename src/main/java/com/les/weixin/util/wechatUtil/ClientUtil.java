@@ -1,7 +1,9 @@
-package com.les.weixin.util;
+package com.les.weixin.util.wechatUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -11,10 +13,7 @@ import java.util.Map;
 
 
 public class ClientUtil {
-
-	
-	
-	
+	private final static Logger log = LoggerFactory.getLogger(ClientUtil.class);
 	/**
 	 * 封装JSON数据
 	 * @param obj 数据
@@ -36,13 +35,12 @@ public class ClientUtil {
 				map.put("body", obj);
 				//returnData.put("success", obj);
 			}
-			
+
 		}
-		
 		JSONObject jsonObjectFromMap = JSONObject.fromObject(map);
 		return jsonObjectFromMap.toString();
 	}
-	
+
 	/**
 	 * 返回数据到客户端
 	 * @param response
@@ -65,30 +63,15 @@ public class ClientUtil {
 			out = null;
 		}
 	}
-
-
-
-
-
 	public static void main(String[] args) {
-		String accessToken  = WeiXinUtil.getAccessToken().getAccess_token();
+		String accessToken = WeiXinUtil.getAccessToken().getToken();
 		String menu = MenuUtil.initMenu();
-		System.out.println(menu);
-		int result = MenuUtil.createMenu(accessToken,menu);
-		if(result==0){
-			System.out.println("菜单创建成功");
-		}else{
-			System.out.println("错误码"+result);
-		}
+		log.info(menu);
+		int result = MenuUtil.createMenu(accessToken, menu);
+		if (result == 0)
+			log.info("菜单创建成功");
+		else
+			log.error("错误码" + result);
 	}
-
-
-
-
-
-
-
-
-
 
 }

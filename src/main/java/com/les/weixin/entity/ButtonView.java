@@ -19,8 +19,5 @@ public class ButtonView extends Button{
         this.url = url;
     }
 
-
-
-
 }
 

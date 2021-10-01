@@ -1,13 +1,13 @@
-package com.les.weixin.pojo;
+package com.les.weixin.entity;
 
 import java.util.List;
 
 /**
-* 类名: SNSUserInfo </br>
+* 类名: UserInfo </br>
 * 描述: 通过网页授权获取的用户信息 </br>
 * 发布版本：V1.0  </br>
  */
-public class SNSUserInfo {
+public class UserInfo {
 	// 用户标识
     private String openId;
     // 用户昵称

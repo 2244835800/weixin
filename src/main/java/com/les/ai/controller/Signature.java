@@ -1,8 +1,10 @@
 package com.les.ai.controller;
 
-import com.les.ai.util.AppProperties;
-import com.les.weixin.util.MessageUtil;
-import com.les.weixin.util.TextMessageUtil;
+import com.les.weixin.util.OtherUtil.AppProperties;
+import com.les.weixin.util.wechatUtil.MessageUtil;
+import com.les.weixin.util.wechatUtil.TextMessageUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,48 +29,56 @@ import java.util.Map;
 @RestController
 @RequestMapping("/test")
 public class Signature {
-
-//    @Autowired
-//    private UserMapper userMapper;
-
-
-//    private String TOKEN = AppProperties.getValue("weixin.signature.token");
-
+private final static Logger log = LoggerFactory.getLogger(Signature.class);
     @Value("${weixin.signature.token}")
     private String TOKEN = AppProperties.getValue("weixin.signature.token");
 
+    /**
+     * 微信向我发送一条校验信息，我接受到，并将echostr（回声）返回给微信，接连成功
+     * @param signature
+     * @param timestamp
+     * @param nonce
+     * @param echostr
+     * @return
+     */
     @GetMapping("/hello")
     public String test(@RequestParam("signature") String signature,
                        @RequestParam("timestamp") String timestamp,
                        @RequestParam("nonce") String nonce,
                        @RequestParam("echostr") String echostr) {
-
-        //排序
         String sortString = sort(TOKEN, timestamp, nonce);
-        //加密
         String myString = sha1(sortString);
-        //校验
         if (myString != null && myString != "" && myString.equals(signature)) {
-            System.out.println("签名校验通s过");
+            log.info("签名校验成功");
             //如果检验成功原样返回echostr，微信服务器接收到此输出，才会确认检验1完成。
             return echostr;
         } else {
-            System.out.println("签名校验失败");
+            log.info("签名校验失败");
             return "";
         }
     }
 
+    /**
+     * 排序
+     * @param token
+     * @param timestamp
+     * @param nonce
+     * @return
+     */
     public String sort(String token, String timestamp, String nonce) {
         String[] strArray = {token, timestamp, nonce};
         Arrays.sort(strArray);
         StringBuilder sb = new StringBuilder();
-        for (String str : strArray) {
+        for (String str : strArray)
             sb.append(str);
-        }
-
         return sb.toString();
     }
 
+    /**
+     * 加密
+     * @param str
+     * @return
+     */
     public String sha1(String str) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-1");
@@ -124,9 +134,9 @@ public class Signature {
     }
 
 
-    @RequestMapping(value = "/hello1")
+    @RequestMapping(value = "/ping")
     public String something() {
-        return "hello yes";
+        return "pong";
     }
 
     @GetMapping(value = "/hello2")

@@ -1,9 +1,8 @@
 package com.les.ai.controller;
 
-import com.les.ai.util.AppProperties;
 import com.les.ai.util.CommonUtil;
-import com.les.ai.util.JSTokenThread;
-import com.les.weixin.util.WeiXinUtil;
+import com.les.weixin.util.OtherUtil.AppProperties;
+import com.les.weixin.util.wechatUtil.WeiXinUtil;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,7 +49,7 @@ public class WeiXinGetTicket {
 //        JSTokenThread jsTokenThread=new JSTokenThread();
 //        JSTokenThread.token.getJsToken();
 
-       String jsToken= CommonUtil.getJSToken(WeiXinUtil.getAccessToken().getAccess_token()).getJsToken();
+       String jsToken= CommonUtil.getJSToken(WeiXinUtil.getAccessToken().getToken()).getJsToken();
         String signature = CommonUtil.sign2(jsToken,
                 nonceStr,
                 timestamp,

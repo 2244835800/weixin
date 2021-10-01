@@ -1,5 +1,7 @@
 package com.les.ai.util;
 
+import com.les.weixin.entity.AccessToken;
+import com.les.weixin.util.OtherUtil.AppProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

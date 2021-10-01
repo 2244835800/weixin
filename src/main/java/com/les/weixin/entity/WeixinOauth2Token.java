@@ -1,4 +1,4 @@
-package com.les.weixin.pojo;
+package com.les.weixin.entity;
 /**
 * 类名: WeixinOauth2Token </br>
 * 描述:  网页授权信息  </br>
